@@ -2,17 +2,16 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import {logout} from '../actions/userActions'
+import { logout } from "../actions/userActions";
 
 const Header = () => {
   const dispatch = useDispatch();
 
-  const userLogin = useSelector(state => state.userLogin);
+  const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-
   const logoutHandler = () => {
-    dispatch(logout())
+    dispatch(logout());
   };
 
   return (
@@ -31,11 +30,16 @@ const Header = () => {
                 </Nav.Link>
               </LinkContainer>
 
+
               {userInfo ? (
-                <NavDropdown title= { userInfo.name } id={"username"}>
+                <NavDropdown title={userInfo.name} id={"username"}>
                   <LinkContainer to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                    <NavDropdown.Item>My Profile</NavDropdown.Item>
                   </LinkContainer>
+                  <LinkContainer to="/order">
+                    <NavDropdown.Item eventKey="4.1">My Orders</NavDropdown.Item>
+                  </LinkContainer>
+                  <NavDropdown.Divider />
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
