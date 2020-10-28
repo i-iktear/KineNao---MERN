@@ -33,7 +33,7 @@ const orderSchema = mongoose.Schema(
       },
     ],
     shippingAddress: {
-      addres: {
+      address: {
         type: String,
         required: true,
       },
@@ -51,10 +51,6 @@ const orderSchema = mongoose.Schema(
       },
     },
     paymentMethod: {
-      type: String,
-      required: true,
-    },
-    payment: {
       type: String,
       required: true,
     },
