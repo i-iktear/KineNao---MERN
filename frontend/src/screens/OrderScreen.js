@@ -7,7 +7,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { Link } from "react-router-dom";
 import { getOrderDetails, payOrder } from "../actions/orderActions";
-import { ORDER_PAY_RESET } from '../constants/orderConstants'
+import { ORDER_PAY_RESET } from "../constants/orderConstants";
 
 const OrderScreen = ({ match }) => {
   const orderId = match.params.id;
@@ -47,7 +47,7 @@ const OrderScreen = ({ match }) => {
     };
 
     if (!order || successPay) {
-      dispatch({type: ORDER_PAY_RESET})
+      dispatch({ type: ORDER_PAY_RESET });
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if (!window.paypal) {
@@ -105,7 +105,12 @@ const OrderScreen = ({ match }) => {
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Message variant="success">paid on{order.paidAt}</Message>
+                <Message variant="success">
+                  {" "}
+                  Order paid on <strong>
+                    {order.paidAt.substring(0, 10)}
+                  </strong>{" "}
+                </Message>
               ) : (
                 <Message variant="danger">Order is not paid yet</Message>
               )}
