@@ -34,4 +34,68 @@ const deleteProduct = asyncHandler(async (req, res) => {
   }
 });
 
-export { getProducts, getProductById, deleteProduct };
+// @desc Create a product
+// @route create /api/products
+// @access private/Admin
+const createProduct = asyncHandler(async (req, res) => {
+  const product = new Product({
+    name: "Demo 1",
+    price: 10,
+    user: req.user._id,
+    brand: "Demo Brand",
+    category: "Demo Category",
+    image: "/images/sample.jpg",
+    countInStock: 10,
+    numReviews: 5,
+    description: "Demo Description",
+  });
+
+  const createdProduct = await product.save();
+  res.status(201).json(createdProduct);
+});
+
+// @desc Update a product
+// @route PUT /api/products/:id
+// @access private/Admin
+const updateProduct = asyncHandler(async (req, res) => {
+  const {
+    name,
+    price,
+    description,
+    image,
+    brand,
+    category,
+    countInStock,
+    numReviews,
+  } = req.body;
+  const product = await Product.findById(req.params.id);
+
+  if (product) {
+    product.name = name;
+    product.price = price;
+    product.description = description;
+    product.image = image;
+    product.brand = brand;
+    product.category = category;
+    product.countInStock = countInStock;
+    product.numReviews = numReviews;
+
+    const updatedProduct = await product.save();
+
+    res.json(updatedProduct);
+  } else {
+    res.status(404);
+    throw new Error("Product not Found");
+  }
+});
+export {
+  getProducts,
+  getProductById,
+  deleteProduct,
+  createProduct,
+  updateProduct,
+};
+
+
+
+
