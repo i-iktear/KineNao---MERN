@@ -66,7 +66,6 @@ const updateProduct = asyncHandler(async (req, res) => {
     brand,
     category,
     countInStock,
-    numReviews,
   } = req.body;
   const product = await Product.findById(req.params.id);
 
@@ -78,7 +77,6 @@ const updateProduct = asyncHandler(async (req, res) => {
     product.brand = brand;
     product.category = category;
     product.countInStock = countInStock;
-    product.numReviews = numReviews;
 
     const updatedProduct = await product.save();
 
@@ -95,7 +93,3 @@ export {
   createProduct,
   updateProduct,
 };
-
-
-
-
