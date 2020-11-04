@@ -17,7 +17,9 @@ import CheckoutSteps from "./components/CheckoutSteps";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
 import ProductListScreen from "./screens/ProductListScreen";
-import ProductEditScreen from './screens/ProductEditScreen'
+import ProductEditScreen from "./screens/ProductEditScreen";
+import AdminOrderListScreen from "./screens/AdminOrderListScreen";
+import UserOrderListScreen from "./screens/UserOrderListScreen";
 
 function App() {
   return (
@@ -34,11 +36,13 @@ function App() {
           <Route path="/login" component={LoginScreen} />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/profile" component={ProfileScreen} />
+          <Route path="/order" exact component={UserOrderListScreen} />
           <Route path="/product/:id" component={ProductScreen} />
           <Route path="/cart/:id?" component={cartScreen} />
           <Route path="/admin/userlist" component={UserListScreen} />
           <Route path="/admin/user/:id/edit" component={UserEditScreen} />
           <Route path="/admin/productlist" component={ProductListScreen} />
+          <Route path="/admin/orderlist" component={AdminOrderListScreen} />
           <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
         </Container>
       </main>
