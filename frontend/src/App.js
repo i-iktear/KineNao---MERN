@@ -17,6 +17,7 @@ import CheckoutSteps from "./components/CheckoutSteps";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
 import ProductListScreen from "./screens/ProductListScreen";
+import ProductEditScreen from './screens/ProductEditScreen'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
       <Header />
       <main className="py-3">
         <Container>
+          <Route path="/" exact component={HomeScreen} />
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/placeorder" component={PlaceOrderScreen} />
           <Route path="/checkout" component={CheckoutSteps} />
@@ -37,7 +39,7 @@ function App() {
           <Route path="/admin/userlist" component={UserListScreen} />
           <Route path="/admin/user/:id/edit" component={UserEditScreen} />
           <Route path="/admin/productlist" component={ProductListScreen} />
-          <Route path="/" exact component={HomeScreen} />
+          <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
         </Container>
       </main>
       <Footer />
