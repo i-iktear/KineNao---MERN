@@ -62,7 +62,7 @@ const OrderScreen = ({ match, history }) => {
       document.body.appendChild(script);
     };
 
-    if (!order || successPay || successDeliver) {
+    if (!order || successPay || successDeliver || orderId !== order._id) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVERED_RESET });
 
@@ -207,7 +207,7 @@ const OrderScreen = ({ match, history }) => {
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
+              {!order.isPaid && order.user._id === userInfo._id && (
                 <ListGroup.Item>
                   {loadingPay && <Loader />}
                   {!sdkReady ? (
