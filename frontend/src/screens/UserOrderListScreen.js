@@ -56,7 +56,7 @@ const UserOrderListScreen = ({ history }) => {
                   )}
                 </td>
                 <td>
-                  {order.isDElivered ? (
+                  {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
                     <i className="fas fa-times" style={{ color: "red" }}></i>
