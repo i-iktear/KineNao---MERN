@@ -29,7 +29,7 @@ const HomeScreen = ({ match }) => {
 
       {/* {!keyword && <ProductCarousel />} */}
       <center>
-        <h1>Our Latest Products...</h1>
+        <h1>Our Latest Products....</h1>
       </center>
       {loading ? (
         <Loader />
