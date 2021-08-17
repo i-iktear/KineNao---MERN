@@ -5,8 +5,10 @@ import Product from "../components/Product";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Paginate from "../components/Paginate";
-import ProductCarousel from "../components/ProductCarousel";
+// import ProductCarousel from "../components/ProductCarousel";
 import { listProducts } from "../actions/productActions";
+import Meta from "../components/Meta";
+import { Link } from "react-router-dom";
 
 const HomeScreen = ({ match }) => {
   const pageNumber = match.params.pageNumber || 1;
@@ -23,9 +25,11 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
-      {!keyword && <ProductCarousel />}
+      <Meta />
+
+      {/* {!keyword && <ProductCarousel />} */}
       <center>
-        <h1>Our Latest Products.</h1>
+        <h1>Our Latest Products...</h1>
       </center>
       {loading ? (
         <Loader />
@@ -33,6 +37,11 @@ const HomeScreen = ({ match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+          {keyword && (
+            <Link to="/" className="btn btn-dark">
+              Go Back
+            </Link>
+          )}
           <Row>
             {products.map((product) => (
               <Col key={product._id} sm={12} md={6} lg={4} xl={3}>

@@ -19,6 +19,7 @@ const getProducts = asyncHandler(async (req, res) => {
   const count = await Product.countDocuments({ ...keyword });
 
   const products = await Product.find({ ...keyword })
+    .sort({ createdAt: "desc" })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
@@ -73,15 +74,8 @@ const createProduct = asyncHandler(async (req, res) => {
 // @route PUT /api/products/:id
 // @access private/Admin
 const updateProduct = asyncHandler(async (req, res) => {
-  const {
-    name,
-    price,
-    description,
-    image,
-    brand,
-    category,
-    countInStock,
-  } = req.body;
+  const { name, price, description, image, brand, category, countInStock } =
+    req.body;
   const product = await Product.findById(req.params.id);
 
   if (product) {
